@@ -4,6 +4,7 @@ type Number interface {
 	int | float32 | float64
 }
 
+// IsMonotonic tests if the contents of the slice is monotonic
 func IsMonotonic[T Number](slice []T) bool {
 	isIncreasing := true
 	isDecreasing := true
