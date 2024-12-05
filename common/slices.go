@@ -7,3 +7,11 @@ func CountFrequency(numbers []int) map[int]int {
 	}
 	return freqMap
 }
+
+func RemoveAtIndex[T any](slice []T, index int) []T {
+	newSlice := make([]T, 0, len(slice)-1)
+	newSlice = append(newSlice, slice[:index]...)
+	newSlice = append(newSlice, slice[index+1:]...)
+
+	return newSlice
+}
