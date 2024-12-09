@@ -9,7 +9,7 @@ import (
 type Day3 struct {
 }
 
-func (d Day3) SolvePart1(input string) (string, error) {
+func (d Day3) SolvePart1(input string) (int64, error) {
 	regex := regexp.MustCompile("mul\\(\\d+,\\d+\\)")
 	matches := regex.FindAllString(input, -1)
 
@@ -20,20 +20,20 @@ func (d Day3) SolvePart1(input string) (string, error) {
 		numbers := strings.Split(match, ",")
 		x, err := strconv.Atoi(numbers[0])
 		if err != nil {
-			return "", err
+			return 0, err
 		}
 		y, err := strconv.Atoi(numbers[1])
 		if err != nil {
-			return "", err
+			return 0, err
 		}
 
 		total += x * y
 	}
 
-	return strconv.Itoa(total), nil
+	return int64(total), nil
 }
 
-func (d Day3) SolvePart2(input string) (string, error) {
+func (d Day3) SolvePart2(input string) (int64, error) {
 	regex := regexp.MustCompile("(mul\\(\\d+,\\d+\\))|(don't\\(\\))|(do\\(\\))")
 	matches := regex.FindAllStringIndex(input, -1)
 
@@ -55,15 +55,15 @@ func (d Day3) SolvePart2(input string) (string, error) {
 		numbers := strings.Split(input[match[0]+4:match[1]-1], ",")
 		x, err := strconv.Atoi(numbers[0])
 		if err != nil {
-			return "", err
+			return 0, err
 		}
 		y, err := strconv.Atoi(numbers[1])
 		if err != nil {
-			return "", err
+			return 0, err
 		}
 
 		total += x * y
 	}
 
-	return strconv.Itoa(total), nil
+	return int64(total), nil
 }

@@ -79,6 +79,7 @@ func getSolutionFunc(year, day int) (common.Solver, error) {
 			1: year2024.Day1{},
 			2: year2024.Day2{},
 			3: year2024.Day3{},
+			4: year2024.Day4{},
 			// Add other days here
 		},
 		// Add other years here

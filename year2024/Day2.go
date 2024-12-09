@@ -11,7 +11,7 @@ import (
 type Day2 struct {
 }
 
-func (d Day2) SolvePart1(input string) (string, error) {
+func (d Day2) SolvePart1(input string) (int64, error) {
 	var reports [][]int
 	scanner := bufio.NewScanner(strings.NewReader(input))
 	for scanner.Scan() {
@@ -21,7 +21,7 @@ func (d Day2) SolvePart1(input string) (string, error) {
 		for i, part := range parts {
 			num, err := strconv.Atoi(part)
 			if err != nil {
-				return "", err
+				return 0, err
 			}
 			numbers[i] = num
 		}
@@ -46,10 +46,10 @@ func (d Day2) SolvePart1(input string) (string, error) {
 		}
 	}
 
-	return strconv.Itoa(safe), nil
+	return int64(safe), nil
 }
 
-func (d Day2) SolvePart2(input string) (string, error) {
+func (d Day2) SolvePart2(input string) (int64, error) {
 	var reports [][]int
 	scanner := bufio.NewScanner(strings.NewReader(input))
 	for scanner.Scan() {
@@ -59,7 +59,7 @@ func (d Day2) SolvePart2(input string) (string, error) {
 		for i, part := range parts {
 			num, err := strconv.Atoi(part)
 			if err != nil {
-				return "", err
+				return 0, err
 			}
 			numbers[i] = num
 		}
@@ -89,7 +89,7 @@ func (d Day2) SolvePart2(input string) (string, error) {
 		}
 	}
 
-	return strconv.Itoa(safe), nil
+	return int64(safe), nil
 }
 
 func isSafe(report []int) bool {

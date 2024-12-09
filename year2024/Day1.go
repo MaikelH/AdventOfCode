@@ -13,7 +13,7 @@ import (
 type Day1 struct {
 }
 
-func (d Day1) SolvePart1(input string) (string, error) {
+func (d Day1) SolvePart1(input string) (int64, error) {
 	var leftList []int
 	var rightList []int
 	scanner := bufio.NewScanner(strings.NewReader(input))
@@ -42,10 +42,10 @@ func (d Day1) SolvePart1(input string) (string, error) {
 		difference += int(math.Abs(float64(leftList[i] - rightList[i])))
 	}
 
-	return strconv.Itoa(difference), nil
+	return int64(difference), nil
 }
 
-func (d Day1) SolvePart2(input string) (string, error) {
+func (d Day1) SolvePart2(input string) (int64, error) {
 	var leftList []int
 	var rightList []int
 	scanner := bufio.NewScanner(strings.NewReader(input))
@@ -72,5 +72,5 @@ func (d Day1) SolvePart2(input string) (string, error) {
 		score += frequencies[value] * value
 	}
 
-	return strconv.Itoa(score), nil
+	return int64(score), nil
 }
