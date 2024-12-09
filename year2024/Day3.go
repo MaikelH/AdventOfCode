@@ -34,22 +34,25 @@ func (d Day3) SolvePart1(input string) (string, error) {
 }
 
 func (d Day3) SolvePart2(input string) (string, error) {
-	regex := regexp.MustCompile("mul\\(\\d+,\\d+\\)")
+	regex := regexp.MustCompile("(mul\\(\\d+,\\d+\\))|(don't\\(\\))|(do\\(\\))")
 	matches := regex.FindAllStringIndex(input, -1)
 
 	total := 0
-	add := true
+	stop := false
 	for _, match := range matches {
 		if strings.Contains(input[match[0]:match[1]], "don't()") {
-			add = false
+			stop = true
 			continue
 		}
-		if
+		if strings.Contains(input[match[0]:match[1]], "do()") {
+			stop = false
+			continue
+		}
 
-
-		match = match[4:]
-		match = match[:len(match)-1]
-		numbers := strings.Split(match, ",")
+		if stop {
+			continue
+		}
+		numbers := strings.Split(input[match[0]+4:match[1]-1], ",")
 		x, err := strconv.Atoi(numbers[0])
 		if err != nil {
 			return "", err
