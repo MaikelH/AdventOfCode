@@ -1,5 +1,7 @@
 package common
 
+import "slices"
+
 func CountFrequency(numbers []int) map[int]int {
 	freqMap := make(map[int]int)
 	for _, num := range numbers {
@@ -14,4 +16,19 @@ func RemoveAtIndex[T any](slice []T, index int) []T {
 	newSlice = append(newSlice, slice[index+1:]...)
 
 	return newSlice
+}
+
+func ContainsSlice[T comparable](mainSlice, sub []T) bool {
+	if len(sub) == 0 {
+		return true
+	}
+	if len(sub) > len(mainSlice) {
+		return false
+	}
+	for i := 0; i <= len(mainSlice)-len(sub); i++ {
+		if slices.Equal(mainSlice[i:i+len(sub)], sub) {
+			return true
+		}
+	}
+	return false
 }

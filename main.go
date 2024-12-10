@@ -39,13 +39,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to solve part 1: %v", err)
 	}
-	fmt.Printf("Part 1: %s\n", part1)
+	fmt.Printf("Part 1: %d\n", part1)
 
 	part2, err := solutionFunc.SolvePart2(input)
 	if err != nil {
 		log.Fatalf("Failed to solve part 2: %v", err)
 	}
-	fmt.Printf("Part 2: %s\n", part2)
+	fmt.Printf("Part 2: %d\n", part2)
 }
 
 func GetInputFile(year, day int, session string, test int) (string, error) {
