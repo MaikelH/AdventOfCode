@@ -1,6 +1,7 @@
 package year2024
 
 import (
+	"AoC/common"
 	"bufio"
 	"regexp"
 	"strings"
@@ -13,23 +14,27 @@ func (d Day4) SolvePart1(input string) (int64, error) {
 	regexF := regexp.MustCompile("XMAS")
 	regexB := regexp.MustCompile("SAMX")
 
-	chars := make([][]byte, 10)
+	chars := [][]byte{}
 	scanner := bufio.NewScanner(strings.NewReader(input))
-	i := 0
 	for scanner.Scan() {
 		line := scanner.Text()
-		chars[i] = []byte(line)
-		i++
+		chars = append(chars, []byte(line))
 	}
 
 	matches := 0
-	// Find horizontal matches
+	// Find row matches
 	for j := 0; j < len(chars); j++ {
 		forward := regexF.FindAllString(string(chars[j]), -1)
 		backward := regexB.FindAllString(string(chars[j]), -1)
 		matches += len(forward) + len(backward)
 	}
-	// Find vertical matches
+	// Find column matches
+	columns := common.GetColumns(chars)
+	for j := 0; j < len(columns); j++ {
+		forward := regexF.FindAllString(string(columns[j]), -1)
+		backward := regexB.FindAllString(string(columns[j]), -1)
+		matches += len(forward) + len(backward)
+	}
 
 	return int64(matches), nil
 }

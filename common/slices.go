@@ -32,3 +32,14 @@ func ContainsSlice[T comparable](mainSlice, sub []T) bool {
 	}
 	return false
 }
+
+func GetColumns[T any](data [][]T) [][]T {
+	columns := make([][]T, len(data[0]))
+	for i := range columns {
+		columns[i] = make([]T, len(data))
+		for j := range columns[i] {
+			columns[i][j] = data[j][i]
+		}
+	}
+	return columns
+}
