@@ -3,6 +3,7 @@ package main
 import (
 	"AoC/common"
 	"AoC/year2024"
+	"AoC/year2025"
 	"embed"
 	"flag"
 	"fmt"
@@ -81,6 +82,9 @@ func getSolutionFunc(year, day int) (common.Solver, error) {
 			3: year2024.Day3{},
 			4: year2024.Day4{},
 			// Add other days here
+		},
+		2025: {
+			1: year2025.Day1{},
 		},
 		// Add other years here
 	}
