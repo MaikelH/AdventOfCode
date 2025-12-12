@@ -53,18 +53,21 @@ func (d Day2) SolvePart2(input string) (int64, error) {
 			idString := strconv.Itoa(i)
 			length := len(idString)
 			divisors := common.Divisors(length)
+			found := false
 
 			for _, divisor := range divisors {
-				if divisor == length {
+				if divisor == 1 || found {
 					continue
 				}
 				parts := make(map[string]struct{}, divisor+1)
-				for i := 0; i < length/divisor; i++ {
-					parts[idString[i:i+divisor]] = struct{}{}
+				cutLength := length / divisor
+				for j := 0; j < len(idString); j = j + cutLength {
+					parts[idString[j:j+cutLength]] = struct{}{}
 				}
 
 				if len(parts) == 1 {
 					sum += int64(i)
+					found = true
 				}
 			}
 		}
